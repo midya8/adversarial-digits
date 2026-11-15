@@ -64,6 +64,13 @@ jobs:
           from test_attribution_report import numeric_equal
           numeric_equal(unittest.TestCase(),json.load(open(Path(sys.argv[1])/'digitlab/artifacts/attribution-report.json')),json.load(open('/tmp/wheel-attribution-run.json')))
           print('10 modules and 10 CLI modes with installed attribution reproduction verified')
+          import digitlab.segment
+          assert Path(digitlab.segment.__file__).is_relative_to('/tmp/installed')
+          import test_segment
+          suite=unittest.defaultTestLoader.loadTestsFromModule(test_segment)
+          result=unittest.TextTestRunner(verbosity=2).run(suite)
+          assert result.wasSuccessful() and result.testsRun==4
+          print('11 modules and four installed segment tests verified')
           PY
           )
   web:

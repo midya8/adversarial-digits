@@ -19,7 +19,36 @@ is retained even when it wins.
 | How does a reference-relative logit difference decompose? | `attribution`, `attribution-audit`, browser inspector | Not causal importance or explanation quality |
 
 The release notes below retain their original test counts. The current suite
-has 78 Python and six Node/browser tests.
+has 82 Python and six Node/browser tests.
+
+## Exact decisions along a supplied segment
+
+```python
+from digitlab.segment import segment_audit
+
+report = segment_audit([[0, -1, 1]], [0, .5, -.5], [0], [1])
+```
+
+This separate Python API follows the real affine classifier along
+`x(t) = (1-t)*start + t*end` for `t` in `[0,1]`. It returns exact rational
+scores and lowest-index predictions at every pairwise score crossing, plus
+open intervals whose prediction is constant. In the example, class 1 wins
+before `1/2`, class 2 after it, and class 0 wins only at the three-way tie.
+Checking only open intervals would miss that isolated decision.
+
+Endpoints use integers, Fractions or rational strings in `[0,1]`, not floats.
+Coefficients use finite Python integers/floats as exact represented reals.
+Limits are 128 features, 20 classes, 256-bit endpoint rationals and 2,048-bit
+coefficient rationals. All pair crossings are retained, even below the winning
+envelope, so the partition need not be minimal. This is not the MLP, a proof
+about floating evaluation, a robustness radius or a realistic handwriting path.
+There is no new CLI or browser control.
+
+Four tests check 80 random small classifiers and their reversed/scaled controls,
+all crossings, exact scores, several interior probes, isolated tie winners,
+constant segments, endpoint ties, subnormals, large integers and invalid inputs.
+The installed package runs the same tests outside checkout. All 78 earlier
+Python tests, six browser tests and saved model/report/fixture bytes remain.
 
 ## Class-logit attribution (v0.5)
 
