@@ -21,6 +21,23 @@ is retained even when it wins.
 The release notes below retain their original test counts. The current suite
 has 82 Python and six Node/browser tests.
 
+For the full installed replay, run `python examples/check_installed.py` after
+installing NumPy 2.2.6, setuptools and wheel. It builds a wheel in a fresh
+environment and runs all 82 existing Python tests outside the checkout. Eleven
+installed module origins are checked before and after. Copied tests, exporters,
+figures, browser bundles and static data contain no library Python source.
+Existing independent references, complete refits, all-row holdout checks and
+figure regeneration remain in the suite.
+
+The command replay compares ten complete reports across all ten CLI modes and
+13 complete output files. It includes both freshly fitted models, their frozen
+selection/evaluation records, the full holdout report, four box audits and the
+radius and attribution audits. The package has a module CLI, not a console
+script. These are same-runtime source/wheel comparisons, not new numerical or
+statistical evidence. Use `--section tests` or `--section commands` for either
+half. CI runs both in a separate job while keeping the original wheel job and
+numerical tolerances.
+
 ## Exact decisions along a supplied segment
 
 ```python
