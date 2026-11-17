@@ -1,4 +1,4 @@
-# DigitLab
+# Adversarial digits
 
 Real handwritten-digit training and bounded-input attack audits in **NumPy only**.
 No PyTorch, JAX, scikit-learn models, autograd engine, paid APIs or pretrained
@@ -6,7 +6,7 @@ weights. A linear softmax model and a 32-hidden-unit tanh MLP are trained from
 scratch with manual parameter and input gradients. A strong exact 1NN baseline
 is retained even when it wins.
 
-![Real data, stronger baseline, bounded attacks and actual digit adaptations](https://raw.githubusercontent.com/midya8/digitlab/a5f2da5e9e6732ace852f7af39bb73bf6afbd66c/assets/digit-audit.svg)
+![Real data, stronger baseline, bounded attacks and actual digit adaptations](https://raw.githubusercontent.com/midya8/adversarial-digits/a5f2da5e9e6732ace852f7af39bb73bf6afbd66c/assets/digit-audit.svg)
 
 ## Choose an audit
 
@@ -69,7 +69,7 @@ Python tests, six browser tests and saved model/report/fixture bytes remain.
 
 ## Class-logit attribution (v0.5)
 
-The [live inspector](https://midya8.github.io/digitlab/) now shows signed
+The [live inspector](https://midya8.github.io/adversarial-digits/) now shows signed
 **class-logit Integrated Gradients**, with an explicit class and either all-zero
 block counts or the frozen fitting-partition mean. The baseline logit, input
 logit, their change, the contribution sum and floating residual are visible.
@@ -78,7 +78,7 @@ Changing the reference changes the question; neither baseline is assumed
 neutral or realistic. These are not causal feature importance, class
 probabilities, deletion effects or proof the model is trustworthy.
 
-![Finite attribution checks and baseline-relative signed digit maps](https://github.com/midya8/digitlab/raw/24112893ca7560c364e79c328464dd5c5b68e7c6/assets/attribution-audit.svg)
+![Finite attribution checks and baseline-relative signed digit maps](https://github.com/midya8/adversarial-digits/raw/24112893ca7560c364e79c328464dd5c5b68e7c6/assets/attribution-audit.svg)
 
 The established method is evaluated algebraically for the existing linear and
 one-hidden-layer tanh models, with a stable divided difference for small hidden
@@ -108,7 +108,7 @@ engine is used. The stronger 1NN baseline is not given a fake gradient map.
 
 ## Browser inference and attacks (v0.4)
 
-The [live model inspector](https://midya8.github.io/digitlab/) also works
+The [live model inspector](https://midya8.github.io/adversarial-digits/) also works
 [offline](docs/index.html). It uses the unchanged selected
 linear/MLP weights and original, attributed examples. Edit an 8x8 block-count
 grid, inspect all ten softmax scores, and try clipped FGSM with an explicit loss
@@ -147,7 +147,7 @@ already wrong; 796 have positive attained thresholds and 902 have positive
 Errors exist strictly beyond it, not at it. All 7,188 old box decisions agree.
 No model, dataset, old report or training setting changed.
 
-![Exact radius infima and boundary-attainment examples](https://raw.githubusercontent.com/midya8/digitlab/5c2fcdad50ec3c1fbefb69a94537607013c0601b/assets/radius-audit.svg)
+![Exact radius infima and boundary-attainment examples](https://raw.githubusercontent.com/midya8/adversarial-digits/5c2fcdad50ec3c1fbefb69a94537607013c0601b/assets/radius-audit.svg)
 
 This remains a real affine proof using exact loaded binary64 coefficients,
 not a guarantee about floating evaluation on newly constructed boundary ties,
@@ -170,7 +170,7 @@ of the 1,797 test examples. The saved PGD pool retained 1,042 and 33 at the
 latter two radii, leaving 14 and 10 surviving examples with attained failures.
 No weights, selection rules, original report or attack settings changed.
 
-![Exact affine-box correctness and actual missed-PGD witnesses](https://raw.githubusercontent.com/midya8/digitlab/562e23c333c85051959b32f6e5ba8cd3926679f0/assets/box-audit.svg)
+![Exact affine-box correctness and actual missed-PGD witnesses](https://raw.githubusercontent.com/midya8/adversarial-digits/562e23c333c85051959b32f6e5ba8cd3926679f0/assets/box-audit.svg)
 
 Scope matters: this proves correctness for the **real affine function of the
 loaded binary64 coefficients**, not all floating-point executions. All clean
