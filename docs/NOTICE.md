@@ -16,7 +16,7 @@ https://creativecommons.org/licenses/by/4.0/
 Original code is MIT. FGSM and manual softmax/tanh backpropagation are established
 methods, not inventions. Exact rational proofs in the repository are NOT run by
 this floating JavaScript demo. Sources and limitations remain in METHOD.md,
-BOX.md and RADIUS.md at https://github.com/midya8/digitlab .
+BOX.md and RADIUS.md at https://github.com/midya8/adversarial-digits .
 
 Class-logit Integrated Gradients follows Sundararajan, Taly & Yan (ICML 2017):
 https://proceedings.mlr.press/v70/sundararajan17a.html . The algebraic specialization
